@@ -1,6 +1,13 @@
-require("webpack");
+const webpack = require("webpack");
 const path = require("path");
+
+//PLUGINS
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+//CHECK ENVIRONMENT MODE
+const isDevelopment = process.env.NODE_ENV !== "production";
+
 
 module.exports = {
   entry: "./client/index.js",
@@ -9,12 +16,20 @@ module.exports = {
     path: path.resolve("dist"),
     publicPath: "/",
   },
+  mode: isDevelopment ? "development" : "production",
   module: {
     rules:[
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: "babel-loader"
+        use: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              plugins: [isDevelopment && require.resolve('react-refresh/babel')].filter(Boolean),
+            }
+          }
+        ],
       },
       {
         test: /\.html$/,
@@ -30,5 +45,8 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: "index.html"
     }),
-  ]
+
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
 }
+ 
