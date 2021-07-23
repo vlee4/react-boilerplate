@@ -6,7 +6,7 @@ import Routes from '../routes'
 const App = () => {
     return(
         <div>
-            <h1>Hey, how you doing</h1>
+            <h1>Tell me why?!</h1>
             <Routes/>
         </div>
     )
