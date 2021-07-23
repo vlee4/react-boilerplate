@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf dist && webpack --mode development",
-    "dev": "nodemon server.js --watch client"
+    "dev": "nodemon server.js"
   },
   "author": "vlee4",
   "license": "ISC",
@@ -19,11 +19,13 @@
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/preset-react": "^7.14.5",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
     "nodemon": "^2.0.12",
+    "react-refresh": "^0.9.0",
     "style-loader": "^3.2.1",
     "webpack": "^5.46.0",
     "webpack-cli": "^4.7.2"
